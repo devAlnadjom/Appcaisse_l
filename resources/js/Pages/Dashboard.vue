@@ -91,10 +91,10 @@
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
-                      <th class="px-4 py-3">Client</th>
-                      <th class="px-4 py-3">Amount</th>
+                      <th class="px-4 py-3">Utilisateurs</th>
+                      <th class="px-4 py-3">Email</th>
                       <th class="px-4 py-3">Status</th>
-                      <th class="px-4 py-3">Date</th>
+                      <th class="px-4 py-3">Contact</th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -196,9 +196,9 @@
               </div>
             </div>
 
-    
 
-    
+
+
   </BreezeAuthenticatedLayout>
 </template>
 
@@ -235,7 +235,7 @@ const lineConfig = {
     datasets: [
       {
         label: 'Organic',
-        
+
         backgroundColor: '#0694a2',
         borderColor: '#0694a2',
         data: [43, 48, 40, 54, 67, 73, 70],
