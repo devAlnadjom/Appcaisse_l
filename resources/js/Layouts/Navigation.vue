@@ -50,7 +50,7 @@
                 </BreezeNavLink>
               </li>
               <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                <BreezeNavLink :href="route('users.index')" :active="route().current('users.index')">
+                <BreezeNavLink :href="route('demandes.index')" :active="route().current('demandes.index')">
                     <template #icon>
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">

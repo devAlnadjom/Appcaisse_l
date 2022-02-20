@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DemandeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('About');
     })->name('about');
 
+    Route::resource("demandes",DemandeController::class);
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');

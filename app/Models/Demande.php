@@ -31,7 +31,8 @@ class Demande extends Model
     public static function myDemandes(){
         return Demande::where('id_demandeur_pdc',Auth::user()->users_in_id)
                 ->where("is_visible","0") //change id
-                ->with(['projet','service'])->orderBy('id_pdc', 'desc')
+                ->with(['projet','service'])
+                ->orderBy('id_pdc', 'desc')
                 ->paginate(10);
     }
 

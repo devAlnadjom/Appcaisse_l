@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
 
-        dd(Demande::myDemandes());
+       // dd(Demande::myDemandes());
 
         $card_stat = array(
             'users' => DB::table('users_in')->count(),

@@ -1,9 +1,9 @@
 <template>
-  <Head title="Dashboard"/>
+  <Head title="Mes demandes"/>
 
   <BreezeAuthenticatedLayout>
     <template #header>
-      Dashboard
+      Mes demandes
     </template>
 
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 mb-5">
@@ -19,7 +19,7 @@
                     Total Users
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{card_stat.users}}
+                    4
                   </p>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                     Caisse
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    CFA {{card_stat?.solde}}
+                    CFA 105.000
                   </p>
                 </div>
               </div>
@@ -67,7 +67,7 @@
                     Pending contacts
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{card_stat.projets}}
+                    4
                   </p>
                 </div>
               </div>
@@ -75,12 +75,10 @@
 
     <div class="flex gap-4">
         <div class="w-1/2 p-4 bg-white border rounded">
-        <h4 class=" font-bold text-lg mb-2">Depense</h4>
-          <canvas id="line" style="display: block; height: 139px; width: 279px;" width="558" height="278" class="chartjs-render-monitor"></canvas>
+        Filter
         </div>
         <div class="flex-1 p-4 bg-white border rounded">
-          <h4 class=" font-bold text-lg mb-2">Piece de caisse</h4>
-          <canvas id="pie" style="display: block; height: 139px; width: 279px;" width="558" height="278" class="chartjs-render-monitor"></canvas>
+            Ajouter
         </div>
 
     </div>
@@ -91,14 +89,15 @@
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
-                      <th class="px-4 py-3">Utilisateurs</th>
-                      <th class="px-4 py-3">Email</th>
-                      <th class="px-4 py-3">Status</th>
-                      <th class="px-4 py-3">Contact</th>
+                      <th class="px-4 py-3">#</th>
+                      <th class="px-4 py-3">Receveur</th>
+                      <th class="px-4 py-3">Montant</th>
+                      <th class="px-4 py-3">Infos</th>
+                      <th class="px-4 py-3">Action</th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    <tr class="text-gray-700 dark:text-gray-400" v-for="user in users.data" :key="user.id_ui">
+                    <tr class="text-gray-700 dark:text-gray-400" v-for="demande in demandes.data" :key="demande.id_ui">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
                           <!-- Avatar with inset shadow -->
@@ -107,26 +106,40 @@
                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{user.nom_p_ui}}</p>
+                            <p class="font-semibold">{{demande.id_pdc}}</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              {{user.poste_ui}}
+                              {{demande.date_cr_pdc}}
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{user.email_ui}}
-                      </td>
-                      <td class="px-4 py-3 text-xs">
-                        <span v-if="user.active_ui==1" class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                          Actif
-                        </span>
-                        <span v-if="user.active_ui==0" class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
-                          Inactif
-                        </span>
+                        {{demande.receveur_pdc}}
+
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{user.contact_ui}}
+                          <p class="font-semibold">{{numberFormatC( demande.montant_pdc)}} </p>
+
+                      </td>
+                      <td class="px-4 py-3 text-sm items-center">
+                        <div>
+                            <p class="font-semibold">{{demande.receveur_pdc}} </p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                              {{demande.service?.libelle_ser}}
+                            </p>
+                          </div>
+                           <p class="text-xs mt-2">
+                                <status-badge :status="demande.etat_valide_pdc" />
+                            </p>
+                      </td>
+                      <td class="px-4 py-3 ">
+
+                        <div class="flex gap-2">
+                            <Link :href="route('demandes.show',demande.id_pdc)" class="text-sm text-green-500 hover:text-green-700"> Details</Link>
+                            |
+                            <Link :href="route('demandes.show',demande.id_pdc)" class="text-sm text-gray-500 hover:text-gray-700"> Archiver</Link>
+
+                        </div>
                       </td>
                     </tr>
 
@@ -135,7 +148,7 @@
                 </table>
               </div>
               <div class="flex flex-row-reverse bg-slate-100 px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-                  <pagination :links="users.links" />
+                  <pagination :links="demandes.links" />
               </div>
             </div>
 
@@ -148,28 +161,36 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import Pagination from '@/Components/Pagination.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import StatusBadge from '@/Components/StatusBadge.vue';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 
 export default {
   components: {
     BreezeAuthenticatedLayout,
     Head,
     Pagination,
+    Link,
+    StatusBadge
   },
   props:{
-    users:Object,
+    demandes:Object,
     card_stat: Object,
   },
   mounted(){
     lineConfig.data.datasets[0].data.push(31);
     lineConfig.data.datasets[1].data.push(120);
     lineConfig.data.labels.push("August");
-    const lineCtx = document.getElementById('line');
+    /*const lineCtx = document.getElementById('line');
     window.myLine = new Chart(lineCtx, lineConfig);
     const pieCtx = document.getElementById('pie')
-    window.myPie = new Chart(pieCtx, pieConfig)
+    window.myPie = new Chart(pieCtx, pieConfig)*/
 
   },
+  methods:{
+       numberFormatC(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  }
 
 };
 
