@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDemandeRequest;
+use App\Models\Account;
+use App\Models\Bcommande;
 use Inertia\Inertia;
 use App\Models\Demande;
+use App\Models\Projet;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DemandeController extends Controller
 {
@@ -30,28 +36,52 @@ class DemandeController extends Controller
     }
 
 
+    public function waitingMyAuthorization()
+    {
+
+        return Inertia::render('Demandes/Waiting_authorization', [
+            'demandes' => Demande::waitingMyAuthorization(),
+            'card_stat'=>array(),//$card_stat,
+
+        ]);
+    }
     public function create()
     {
-        //
+        $service= Service::Where("data1_ser","1")
+                            ->get();
+        $projet= Projet::Where("data1_projet","1")
+                            ->get();
+
+        $bcommande= Bcommande::Where("data3_bc","1")
+                            ->get();
+        $manager= Account::Where("level_ui","20")->orWhere("level_ui",">","30")->Where("active_ui","1")
+                            ->get();
+        $auth= Account::Where("id_ui",Auth::user()->users_in_id)->firstOrFail();
+
+
+                return Inertia::render('Demandes/Create', [
+                    'services' => $service,
+                    'projets' => $projet,
+                    'commandes' => $bcommande,
+                    'managers' => $manager,
+                    'isManager' => ($auth->level_ui*1 > 19)?true:false,
+                ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+
+    public function store(StoreDemandeRequest $rq)
     {
-        //
+        //dd($rq);
+        $data= $rq->validated();//safe();//->except(['picture']);
+        $demande= Demande::create($data);
+
+
+        return redirect()->route('demandes.show',$demande->id_pdc)->with('success',"Votre piece de caisse a éte bien soumis.");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function show($id)
     {
         $demande= Demande::where('id_pdc',$id)
@@ -62,12 +92,8 @@ class DemandeController extends Controller
                 ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function edit($id)
     {
         //

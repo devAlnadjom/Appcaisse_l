@@ -12,6 +12,7 @@ class Demande extends Model
     protected $table = 'pdc';
     protected $primaryKey = 'id_pdc';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function account(){
         return $this->belongsTo(Account::class,'id_demandeur_pdc','id_ui');
@@ -49,6 +50,7 @@ class Demande extends Model
         return Demande::where('team_l',Auth::user()->users_in_id)
                 ->where("etat_valide_pdc","5") //change id
                 ->with(['projet','service'])
+                ->orderBy('id_pdc', 'desc')
                 ->paginate(10);
 
     }

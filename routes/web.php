@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DemandeController;
+use App\Models\Demande;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('About');
     })->name('about');
 
+
+    Route::get('demandes/autorization', [DemandeController::class, 'waitingMyAuthorization'])->name('demandes.authorization');
     Route::resource("demandes",DemandeController::class);
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 

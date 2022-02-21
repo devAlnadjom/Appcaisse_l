@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
+use App\Models\Account;
 use Inertia\Middleware;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -33,9 +35,14 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $auth= Account::Where("id_ui",Auth::user()?->users_in_id)->first();
+        $permission= $auth ? $auth->permissions:null;
+        $level= $auth ? $auth->level_ui:null;
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
+                'permission'=>json_decode( $permission),
+                'level'=>$level,
             ],
             'flash' => function () use ($request) {
                 return [
