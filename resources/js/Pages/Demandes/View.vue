@@ -24,7 +24,9 @@
     </span>
 
     <span class="hidden sm:block ml-3">
-      <button v-if="($page.props.auth.level >=20) && ($page.props.auth.user.users_in_id==demande.team_l)" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <button v-if="($page.props.auth.level >=20) && ($page.props.auth.user.users_in_id==demande.team_l) && (5==demande?.etat_valide_pdc)"
+          @click="authorize()"
+          type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         <!-- Heroicon name: solid/link -->
         <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -35,6 +37,7 @@
 
     <span class="sm:ml-3">
       <button
+      @click="reject()"
       v-if="(demande.etat_valide_pdc ==1 || demande.etat_valide_pdc ==5 || demande.etat_valide_pdc ==2) && ($page.props.auth?.level >=20 )"
       type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
         <!-- Heroicon name: solid/check -->
@@ -48,6 +51,7 @@
 
     <span class="hidden sm:block ml-3">
       <button v-if="(demande.etat_valide_pdc ==1) && ( $page.props.auth.permission?.can_validate=='true')"
+       @click="approuve()"
       type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         <!-- Heroicon name: solid/link -->
         <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -99,7 +103,25 @@
   </div>
 </div>
 
+<div class="lg:w-1/2 mt-5">
+    <div v-show="$page.props.flash.success"
+           class="inline-flex w-full mb-4 overflow-hidden bg-white rounded-lg shadow-md">
+        <div class="flex items-center justify-center w-12 bg-green-500">
+          <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z">
+            </path>
+          </svg>
+        </div>
 
+        <div class="px-4 py-2 -mx-3">
+          <div class="mx-3">
+            <span class="font-semibold text-green-500">Success</span>
+            <p class="text-sm text-gray-600">{{ $page.props.flash.success }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <div class="w-full lg:w-3/4 overflow-hidden rounded-lg border shadow-xs mt-10 mb-5">
@@ -225,6 +247,27 @@ export default {
   methods:{
        numberFormatC(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+
+    approuve()
+    {
+        if(confirm("Voulez approuver cette piece de caisse?"))
+        this.$inertia.post(route("approbation.approuve",this.demande.id_pdc));
+    },
+    authorize()
+    {
+        if(confirm("Voulez approuver cette piece de caisse?"))
+        this.$inertia.post(route("approbation.authorize",this.demande.id_pdc));
+    },
+    reject()
+    {
+        if(confirm("Voulez rejeter cette piece de caisse?"))
+        this.$inertia.post(route("approbation.reject",this.demande.id_pdc));
+    },
+    archive()
+    {
+        if(confirm("Voulez archiver cette piece de caisse?"))
+        this.$inertia.post(route("approbation.archive",this.demande.id_pdc));
     },
   }
 

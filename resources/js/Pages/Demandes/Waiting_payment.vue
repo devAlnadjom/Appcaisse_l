@@ -1,9 +1,9 @@
 <template>
-  <Head title="Mes demandes"/>
+  <Head title="En Attente de Paiement"/>
 
   <BreezeAuthenticatedLayout>
     <template #header>
-      Mes demandes
+      En Attente de Paiement
     </template>
 
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 mb-5">
@@ -124,9 +124,14 @@
                       <td class="px-4 py-3 ">
 
                         <div class="flex gap-2">
-                            <Link :href="route('demandes.show',demande.id_pdc)" class="text-sm text-green-500 hover:text-green-700"> Details</Link>
-                            |
-                            <Link :href="route('demandes.show',demande.id_pdc)" class="text-sm text-gray-500 hover:text-gray-700"> Archiver</Link>
+                            <Link
+
+                             :href="route('demandes.show',demande.id_pdc)" class="text-sm text-gray-500 hover:text-gray-700"> Detais</Link>
+
+                            <Link
+                                 v-if=" ( $page.props.auth.permission?.can_pay=='true')"
+                             :href="route('demandes.show',demande.id_pdc)" class="text-sm text-green-500 hover:text-green-700"> Payer</Link>
+
 
                         </div>
                       </td>

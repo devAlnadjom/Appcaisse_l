@@ -55,10 +55,20 @@ class Demande extends Model
 
     }
 
-    public static function waitingpayment(){
+
+    public static function waitingApprobation(){
+        return Demande::where("etat_valide_pdc","1")
+                ->with(['projet','service'])
+                ->orderBy('id_pdc', 'desc')
+                ->paginate(10);
+
+    }
+
+    public static function waitingPayment(){
         return Demande::where('id_restapayer_pdc','!=','0')
                 ->where("etat_valide_pdc","2") //change id
                 ->with(['projet','service'])
+                ->orderBy('id_pdc', 'desc')
                 ->paginate(10);
 
     }

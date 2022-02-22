@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprobationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DemandeController;
 use App\Models\Demande;
@@ -36,6 +37,13 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('About');
     })->name('about');
 
+
+    Route::post('approbation/archive/{demande}', [ApprobationController::class, 'archive'])->name('approbation.archive');
+    Route::post('approbation/authorize/{demande}', [ApprobationController::class, '_authorize'])->name('approbation.authorize');
+    Route::post('approbation/reject/{demande}', [ApprobationController::class, 'reject'])->name('approbation.reject');
+    Route::post('approbation/approuve/{demande}', [ApprobationController::class, 'approuve'])->name('approbation.approuve');
+    Route::get('approbation/a_payer', [ApprobationController::class, 'waitingPayment'])->name('approbation.waitingPayment');
+    Route::get('approbation', [ApprobationController::class, 'index'])->name('approbation.index');
 
     Route::get('demandes/autorization', [DemandeController::class, 'waitingMyAuthorization'])->name('demandes.authorization');
     Route::resource("demandes",DemandeController::class);
