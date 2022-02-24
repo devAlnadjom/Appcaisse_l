@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApprobationController;
+use App\Http\Controllers\CaisseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DemandeController;
 use App\Models\Demande;
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('About');
     })->name('about');
 
+
+    Route::get('caisse/pay/{demande}', [CaisseController::class, 'pay'])->name('caisse.pay');
+    Route::post('caisse/payer', [CaisseController::class, 'payer'])->name('caisse.payer');
+    Route::get('caisse', [CaisseController::class, 'index'])->name('caisse.index');
 
     Route::post('approbation/archive/{demande}', [ApprobationController::class, 'archive'])->name('approbation.archive');
     Route::post('approbation/authorize/{demande}', [ApprobationController::class, '_authorize'])->name('approbation.authorize');
