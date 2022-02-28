@@ -62,18 +62,30 @@
       </div>
     </div>
 
-    <div class="flex gap-4">
-        <div class="w-1/2 p-4 bg-white border rounded">
-        Filter
-        </div>
-        <div class="flex-1 p-4 bg-white border rounded">
-            Ajouter
-        </div>
 
+    <div class="flex mb-4 w-full justify-between">
+         <div class="flex flex-row w-3/5">
+            <div class=" w-44">
+                <select v-model="form.trashed" class=" rounded-l py-1 w-full border-r-0">
+                    <option :value="null" />
+                    <option value="with">All </option>
+                    <option value="only">Trashed</option>
+                    <option value="1">Avaible</option>
+                    <option value="0">Not Avaible</option>
+                  </select>
+            </div>
+            <div class="flex w-full bg-white shadow rounded">
+                <input class="relative w-full px-4 py-1 rounded-r -focus:ring border" autocomplete="off" type="text" name="search" placeholder="Rechercher" v-model="form.search"  />
+            </div>
+                <button class="ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500 " type="button" @click="reset()">Effacer</button>
+        </div>
+            <Link :href="route('caisse.add_appro',)" active class="block">
+                    <span class="flex ml-auto text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">Ajouter Appro</span>
+            </Link>
     </div>
 
 
-    <div class="w-full overflow-hidden rounded-lg shadow-xs mt-10 mb-5">
+    <div class="w-full overflow-hidden rounded-lg shadow-xs mt-3 mb-5">
               <div class="w-full overflow-x-auto bg-gray-700 ">
                 <table class="w-full whitespace-no-wrap">
                   <thead>
@@ -108,6 +120,7 @@
                       </td>
                       <td class="px-4 py-3 text-sm">
                           <p class="font-semibold">{{numberFormatC( demande.montant_pdc)}} </p>
+                          <p class="text-xs" v-if="demande.montant_pdc!==demande.id_restapayer_pdc">{{numberFormatC( demande.id_restapayer_pdc)}} </p>
 
                       </td>
                       <td class="px-4 py-3 text-sm items-center">
@@ -158,6 +171,11 @@ import Pagination from '@/Components/Pagination.vue';
 import StatusBadge from '@/Components/StatusBadge.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
+
+import pickBy from 'lodash/pickBy';
+import throttle from 'lodash/throttle';
+import mapValues from 'lodash/mapValues';
+
 export default {
   components: {
     BreezeAuthenticatedLayout,
@@ -170,7 +188,27 @@ export default {
     demandes:Object,
     card_stat: Object,
     solde: Number,
+    filters: Object,
   },
+  data() {
+        return {
+            modalOpen:false,
+            form: {
+            search: this.filters.search,
+            trashed: this.filters.trashed,
+          },
+        };
+    },
+
+    watch: {
+    form: {
+      deep: true,
+      handler: throttle(function() {
+        this.$inertia.get(this.route('caisse.index'), pickBy(this.form), { preserveState: true })
+      }, 400),
+    },
+  },
+
   mounted(){
     lineConfig.data.datasets[0].data.push(31);
     lineConfig.data.datasets[1].data.push(120);

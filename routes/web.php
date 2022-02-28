@@ -39,6 +39,11 @@ Route::middleware('auth')->group(function () {
     })->name('about');
 
 
+
+    Route::post('caisse/approvisionner', [CaisseController::class, 'approvisionner'])->name('caisse.store_appro');
+    Route::get('caisse/approvisionner', [CaisseController::class, 'appro_show_form'])->name('caisse.add_appro');
+
+    Route::get('caisse/appro', [CaisseController::class, 'pay'])->name('caisse.appro_list');
     Route::get('caisse/pay/{demande}', [CaisseController::class, 'pay'])->name('caisse.pay');
     Route::post('caisse/payer', [CaisseController::class, 'payer'])->name('caisse.payer');
     Route::get('caisse', [CaisseController::class, 'index'])->name('caisse.index');
