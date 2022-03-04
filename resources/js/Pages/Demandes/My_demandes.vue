@@ -1,9 +1,9 @@
 <template>
-  <Head title="Mes demandes"/>
+  <Head title="Mes Demandes"/>
 
   <BreezeAuthenticatedLayout>
     <template #header>
-      Mes demandes
+      Mes Denandes
     </template>
 
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 mb-5">
@@ -72,17 +72,6 @@
                 </div>
               </div>
     </div>
-
-    <div class="flex gap-4">
-        <div class="w-1/2 p-4 bg-white border rounded">
-        Filter
-        </div>
-        <div class="flex-1 p-4 bg-white border rounded">
-            Ajouter
-        </div>
-
-    </div>
-
 
     <div class="w-full overflow-hidden rounded-lg shadow-xs mt-10 mb-5">
               <div class="w-full overflow-x-auto bg-gray-700 ">

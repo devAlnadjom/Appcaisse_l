@@ -35,7 +35,7 @@
                     Dispo. en Caisse
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{solde}} CFA
+                    {{numberFormatC(solde)}} CFA
                   </p>
                 </div>
               </div>
@@ -139,7 +139,7 @@
                         <div class="flex gap-2">
                             <Link
 
-                             :href="route('demandes.show',demande.id_pdc)" class="text-sm text-gray-500 hover:text-gray-700"> Detais</Link>
+                             :href="route('demandes.show',demande.id_pdc)" class="text-sm text-gray-500 hover:text-gray-700"> Details</Link>
 
                             <Link
                                  v-if=" ( $page.props.auth.permission?.can_pay=='true')"

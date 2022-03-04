@@ -62,16 +62,6 @@
       </div>
     </div>
 
-    <div class="flex gap-4">
-        <div class="w-1/2 p-4 bg-white border rounded">
-        Filter
-        </div>
-        <div class="flex-1 p-4 bg-white border rounded">
-            Ajouter
-        </div>
-
-    </div>
-
 
     <div class="w-full overflow-hidden rounded-lg shadow-xs mt-10 mb-5">
               <div class="w-full overflow-x-auto bg-gray-700 ">
@@ -126,7 +116,7 @@
                         <div class="flex gap-2">
                             <Link
 
-                             :href="route('demandes.show',demande.id_pdc)" class="text-sm text-gray-500 hover:text-gray-700"> Detais</Link>
+                             :href="route('demandes.show',demande.id_pdc)" class="text-sm text-gray-500 hover:text-gray-700"> Details</Link>
 
                             <Link
                                  v-if=" ( $page.props.auth.permission?.can_pay=='true')"
