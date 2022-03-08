@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Caisse;
 use App\Models\Demande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Actions\CustomPermission;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreApproRequest;
 use App\Http\Requests\StorePaymentRequest;
-use App\Models\Caisse;
-use Illuminate\Support\Facades\DB;
 
 class CaisseController extends Controller
 {
@@ -102,5 +103,16 @@ class CaisseController extends Controller
          usleep(400000);
 
         return redirect()->route('caisse.index')->with('success',"La Caisse a éte bien approvisionnée.");
+    }
+
+
+    public function brouillard()
+    {
+        $SoldePrecedent= Caisse::soldeDuMois();
+        $ligne= Caisse::whereMonth('date_finn','=',Carbon::today()->month)
+                ->with(['cdc:code_cdc,libelle_cdc','projet:id_projet,libelle_projet','service:cod_ser,libelle_ser'])
+                ->get();
+        //dd($ligne);
+       return view("brouillard",compact('SoldePrecedent','ligne'));
     }
 }

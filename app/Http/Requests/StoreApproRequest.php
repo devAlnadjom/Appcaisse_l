@@ -47,7 +47,7 @@ class StoreApproRequest extends FormRequest
     {
         $this->merge([
             'data1_finn' => Auth::user()->users_in_id,
-            'type_finn' => 1,
+            'type_finn' => 2,
             'date_finn' => date('Y-m-d H:i:s'),
             'sortie_finn' => 0,
             'data2_finn' => 0,

@@ -29,6 +29,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('caisse/brouillard', [CaisseController::class, 'brouillard'])->name('caisse.brouillard');
+
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
