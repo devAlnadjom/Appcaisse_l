@@ -20,18 +20,18 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+});*/
 
-Route::get('caisse/brouillard', [CaisseController::class, 'brouillard'])->name('caisse.brouillard');
 
-Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -41,11 +41,12 @@ Route::middleware('auth')->group(function () {
     })->name('about');
 
 
+    Route::get('caisse/brouillard', [CaisseController::class, 'brouillard'])->name('caisse.brouillard');
 
     Route::post('caisse/approvisionner', [CaisseController::class, 'approvisionner'])->name('caisse.store_appro');
     Route::get('caisse/approvisionner', [CaisseController::class, 'appro_show_form'])->name('caisse.add_appro');
 
-    Route::get('caisse/appro', [CaisseController::class, 'pay'])->name('caisse.appro_list');
+    Route::get('caisse/appro', [CaisseController::class, 'appro'])->name('caisse.appro_list');
     Route::get('caisse/pay/{demande}', [CaisseController::class, 'pay'])->name('caisse.pay');
     Route::post('caisse/payer', [CaisseController::class, 'payer'])->name('caisse.payer');
     Route::get('caisse', [CaisseController::class, 'index'])->name('caisse.index');

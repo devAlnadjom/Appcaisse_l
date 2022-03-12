@@ -143,17 +143,17 @@
                 </BreezeNavLink>
               </li>
               <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                <BreezeNavLink :href="route('approbation.waitingPayment')" :active="route().current('approbation.waitingPayment')">
+                <BreezeNavLink :href="route('caisse.brouillard')" :active="route().current('caisse.brouillard')">
                     <template #icon>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                     </svg>
                     </template>
-                    Paiement Recent
+                    MS Financial
                 </BreezeNavLink>
               </li>
               <li v-if="$page.props.auth.level >=25" class="px-2 border-t py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                <BreezeNavLink :href="route('demandes.authorization')" :active="route().current('caisse.appro_list')">
+                <BreezeNavLink :href="route('caisse.appro_list')" :active="route().current('caisse.appro_list')">
                     <template #icon>
 
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

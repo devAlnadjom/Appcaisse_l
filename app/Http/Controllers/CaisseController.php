@@ -58,6 +58,26 @@ class CaisseController extends Controller
     }
 
 
+    public function appro(Demande $demande)
+    {
+        $solde=Caisse::solde();
+        $ligne= Caisse::whereYear('date_finn','=',date('Y'))
+                ->where('type_finn','2')
+                ->paginate(10)
+                ->withQueryString();
+
+        //dd($ligne);
+
+       CustomPermission::check("can_pay");
+
+                return Inertia::render('Caisse/Appro_list', [
+                    'appro' => $ligne,
+                    'solde' => $solde,
+
+                ]);
+    }
+
+
     public function appro_show_form()
     {
         $solde=Caisse::solde();

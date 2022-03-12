@@ -20,9 +20,21 @@
     <body class="antialiased">
         <div class="flex flex-col items-top justify-center bg-gray-300 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             <div class=" bg-indigo-600 p-4 text-white w-full">
-                <h3 class=" text-xl"> Brouillard du mois</h3>
+                <div class="flex justify-between">
+                    <h3 class=" text-xl"> Brouillard du mois</h3>
+
+                    <a href="{{route("caisse.brouillard")}}"
+                        class=" text-lg text-white hover:underline "
+                        target="_blank" >
+                        Plus de details
+                    </a>
+                </div>
+
             </div>
-            <div class="min-h-screen w-full p-4  mt-10">
+            <div onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class=" fixed right-6 bottom-6 px-4 rounded-full bg-indigo-500 bg-opacity-80 hover:bg-opacity-50 cursor-pointer">
+                ^
+            </div>
+            <div class="min-h-screen w-full p-4 lg:pr-10   mt-10">
                 <div class="bg-white w-full md:mx-4 rounded">
                     <table class="w-full whitespace-no-wrap">
                         <thead>
@@ -75,8 +87,8 @@
                                 <td class="px-4 py-3">{{ $ligne->projet->libelle_projet }}</td>
                                 <td class="px-4 py-3">{{ $ligne->cdc->libelle_cdc}}</td>
                                 <td class="px-4 py-3">C{{ $ligne->source_finn }}</td>
-                                <td class="px-4 py-3">{{ $ligne->sortie_finn }}</td>
-                                <td class="px-4 py-3">{{ $ligne->entre_finn }}</td>
+                                <td class="px-4 py-3">{{ number_format($ligne->sortie_finn) }}</td>
+                                <td class="px-4 py-3">{{ number_format($ligne->entre_finn) }}</td>
 
                                 <td class="px-4 py-3 font-semibold">{{ number_format($ligne->solde_finn) }}</td>
 
