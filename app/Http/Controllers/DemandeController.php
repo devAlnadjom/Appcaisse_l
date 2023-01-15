@@ -72,7 +72,6 @@ class DemandeController extends Controller
 
     public function store(StoreDemandeRequest $rq)
     {
-        //dd($rq);
         $data= $rq->validated();//safe();//->except(['picture']);
         $demande= Demande::create($data);
 

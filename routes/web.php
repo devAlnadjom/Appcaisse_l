@@ -60,8 +60,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('demandes/autorization', [DemandeController::class, 'waitingMyAuthorization'])->name('demandes.authorization');
     Route::resource("demandes",DemandeController::class);
-    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resource('users', \App\Http\Controllers\UserController::class);
+    Route::resource('services', \App\Http\Controllers\ServiceController::class);
+    Route::resource('projets', \App\Http\Controllers\ProjetController::class);
+    Route::resource('cdcs', \App\Http\Controllers\CdcController::class);
 });

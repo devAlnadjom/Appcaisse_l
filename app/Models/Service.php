@@ -13,5 +13,7 @@ class Service extends Model
     protected $primaryKey = 'cod_ser';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
+    protected $guarded = [];
 
 }

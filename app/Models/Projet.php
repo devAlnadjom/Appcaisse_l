@@ -10,5 +10,7 @@ class Projet extends Model
     use HasFactory;
     protected $table = 'projet';
     protected $primaryKey = 'id_projet';
+    public $timestamps = false;
+    protected $guarded = [];
 
 }

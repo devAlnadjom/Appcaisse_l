@@ -4,13 +4,14 @@ namespace App\Actions;
 
 use App\Models\User;
 use App\Models\Account;
-use Exception;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Stmt\TryCatch;
 
 class CustomPermission {
     public static function check($_permission) {
-
+        //Admin
+        if(Auth::user()->id == 1) {
+            return ;
+        }
 
         $auth= Account::Where("id_ui",Auth::user()?->users_in_id)->first();
         $permission= $auth ? json_decode($auth->permissions,1) :null;
