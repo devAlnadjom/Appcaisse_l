@@ -27,9 +27,11 @@ class Caisse extends Model
         $Month= isset($Month)?$Month : Carbon::now()->subMonth()->month;
 
 
-        return ( DB::table('finn_com')->whereMonth("date_finn","=",$Month)
+        $res = DB::table('finn_com')->whereMonth("date_finn","=",$Month)
         ->orderBy('id_finn', 'desc')
-        ->first()->solde_finn);
+        ->first()?->solde_finn;
+
+        return $res ? $res : 0;
     }
 
 
