@@ -29,11 +29,10 @@ use Inertia\Inertia;
     ]);
 });*/
 
-
-
-Route::get('/', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
 require __DIR__.'/auth.php';
+
+Route::get('/', [DashboardController::class,'index'])->middleware(['auth'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('about', function () {
