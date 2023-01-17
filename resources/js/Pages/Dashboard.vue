@@ -16,7 +16,7 @@
                 </div>
                 <div>
                   <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Total Users
+                    Utilisateurs
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     {{card_stat.users}}
@@ -35,11 +35,11 @@
                     Caisse
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    CFA {{card_stat?.solde}}
+                     {{card_stat?.solde}}
                   </p>
                 </div>
               </div>
-              <!-- Card -->
+              <!-- Card ->
               <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -54,7 +54,7 @@
                     376
                   </p>
                 </div>
-              </div>
+              </div-->
               <!-- Card -->
               <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
@@ -64,7 +64,7 @@
                 </div>
                 <div>
                   <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Pending contacts
+                    Projets
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     {{card_stat.projets}}
@@ -75,11 +75,11 @@
 
     <div class="flex gap-4">
         <div class="w-1/2 p-4 bg-white border rounded">
-        <h4 class=" font-bold text-lg mb-2">Depense</h4>
+        <h4 class=" font-bold text-lg mb-2">Dépense</h4>
           <canvas id="line" style="display: block; height: 139px; width: 279px;" width="558" height="278" class="chartjs-render-monitor"></canvas>
         </div>
         <div class="flex-1 p-4 bg-white border rounded">
-          <h4 class=" font-bold text-lg mb-2">Piece de caisse</h4>
+          <h4 class=" font-bold text-lg mb-2">Pièce de caisse</h4>
           <canvas id="pie" style="display: block; height: 139px; width: 279px;" width="558" height="278" class="chartjs-render-monitor"></canvas>
         </div>
 
@@ -101,11 +101,11 @@
                     <tr class="text-gray-700 dark:text-gray-400" v-for="user in users.data" :key="user.id_ui">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
-                          <!-- Avatar with inset shadow -->
+                          <!-- Avatar with inset shadow ->
                           <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                             <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy">
                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                          </div>
+                          </div-->
                           <div>
                             <p class="font-semibold">{{user.nom_p_ui}}</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">

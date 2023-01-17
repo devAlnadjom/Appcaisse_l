@@ -1,13 +1,14 @@
 <template>
-  <Head title="About us"/>
+  <Head title="A Propos"/>
 
   <BreezeAuthenticatedLayout>
     <template #header>
-      About us
+      A Propos
     </template>
 
     <div class="p-4 bg-white rounded-lg shadow-xs">
-      Sample static text page
+      Conçu par <span class="font-semibold text-purple-600">@alnadjom</span> <br/>
+
     </div>
   </BreezeAuthenticatedLayout>
 </template>

@@ -32,7 +32,7 @@
 
             <div class="lg:flex lg:flex-row gap-4 border-t">
                 <div class="mt-4 hidden md:block lg:w-1/3">
-                    <h3 class="font-bold text-lg">Paramettres de Connexion</h3>
+                    <h3 class="font-bold text-lg">Paramètres de Connexion</h3>
                     <p class="text-sm mt-3"> Vos informations de connexion.
                     Veuillez Modifier judicieusement ces informations.</p>
                 </div>

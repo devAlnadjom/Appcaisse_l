@@ -1,5 +1,5 @@
 <template>
-  <Head title="Log in"/>
+  <Head title="Connexion"/>
 
   <div class="flex flex-col overflow-y-auto md:flex-row">
     <div class="h-32 md:h-auto md:w-1/2">
@@ -7,7 +7,7 @@
     </div>
     <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
       <div class="w-full">
-        <h1 class="mb-4 text-xl font-semibold text-gray-700">Login</h1>
+        <h1 class="mb-4 text-xl font-semibold text-gray-700">Authentification</h1>
 
         <BreezeValidationErrors class="mb-4"/>
 
@@ -30,7 +30,7 @@
           </div>
 
           <div class="mt-4">
-            <BreezeLabel for="password" value="Password"/>
+            <BreezeLabel for="password" value="Mot de Passe"/>
             <BreezeInput
                 id="password"
                 type="password"
@@ -44,7 +44,7 @@
           <div class="block mt-4">
             <label class="flex items-center">
               <BreezeCheckbox name="remember" v-model:checked="form.remember"/>
-              <span class="ml-2 text-sm text-gray-600">Remember me</span>
+              <span class="ml-2 text-sm text-gray-600">Se Souvenir</span>
             </label>
           </div>
 
@@ -54,7 +54,7 @@
                 :href="route('password.request')"
                 class="text-sm text-gray-600 underline  hover:text-gray-900"
             >
-              Forgot your password?
+              Mot de passe oublié?
             </Link>
 
             <BreezeButton
@@ -62,7 +62,7 @@
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
             >
-              Log in
+              Connexion
             </BreezeButton>
           </div>
         </form>

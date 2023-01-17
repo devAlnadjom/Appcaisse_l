@@ -6,8 +6,8 @@
       Mes demandes
     </template>
 
-    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 mb-5">
-              <!-- Card -->
+    <!--div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 mb-5">
+              <-- Card ->
               <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -23,7 +23,7 @@
                   </p>
                 </div>
               </div>
-              <!-- Card -->
+              <-- Card ->
               <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -41,7 +41,7 @@
               </div>
 
 
-    </div>
+    </div-->
     <div class="lg:w-1/2 mt-5">
     <div v-show="$page.props.flash.success"
            class="inline-flex w-full mb-4 overflow-hidden bg-white rounded-lg shadow-md">
@@ -61,17 +61,6 @@
         </div>
       </div>
     </div>
-
-    <div class="flex gap-4">
-        <div class="w-1/2 p-4 bg-white border rounded">
-        Filter
-        </div>
-        <div class="flex-1 p-4 bg-white border rounded">
-            Ajouter
-        </div>
-
-    </div>
-
 
     <div class="w-full overflow-hidden rounded-lg shadow-xs mt-10 mb-5">
               <div class="w-full overflow-x-auto bg-gray-700 ">

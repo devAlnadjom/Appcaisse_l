@@ -1,5 +1,5 @@
 <template>
-  <Head title="Forgot Password"/>
+  <Head title="Reinitialiser le compte"/>
 
   <div class="flex flex-col overflow-y-auto md:flex-row">
     <div class="h-32 md:h-auto md:w-1/2">
@@ -13,8 +13,8 @@
     <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
       <div class="w-full">
         <h1 class="mb-4 font-semibold text-gray-700">
-          Forgot your password? No problem. Just let us know your email address and we will email you a password reset
-          link that will allow you to choose a new one.
+          Mot de passe oublié? Ne vous en faites pas, saisissez juste votre adresse mail et nous vous
+          enverrons un mail de reinitialisation.
         </h1>
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
@@ -37,12 +37,18 @@
             />
           </div>
 
-          <div class="flex items-center justify-end mt-4">
+          <div class="flex items-center justify-between mt-4">
+            <Link
+                :href="route('login')"
+                class="text-sm text-gray-600 underline  hover:text-gray-900"
+            >
+                J'ai deja un compte?
+            </Link>
             <BreezeButton
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
             >
-              Email Password Reset Link
+              Envoyer le lien
             </BreezeButton>
           </div>
         </form>
@@ -57,7 +63,7 @@ import BreezeGuestLayout from "@/Layouts/Guest.vue";
 import BreezeInput from "@/Components/Input.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 export default {
   layout: BreezeGuestLayout,
@@ -68,6 +74,7 @@ export default {
     BreezeLabel,
     BreezeValidationErrors,
     Head,
+    Link,
   },
 
   props: {

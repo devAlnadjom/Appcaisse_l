@@ -1,5 +1,5 @@
 <template>
-  <Head title="Reset Password"/>
+  <Head title="Reinitialiser Mot de passe"/>
 
   <div class="flex flex-col overflow-y-auto md:flex-row">
     <div class="h-32 md:h-auto md:w-1/2">
@@ -9,7 +9,7 @@
     <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
       <div class="w-full">
         <h1 class="mb-4 text-xl font-semibold text-gray-700">
-          Forgot password
+          Reinitialiser Mot de passe
         </h1>
 
         <BreezeValidationErrors class="mb-4"/>
@@ -22,20 +22,20 @@
           </div>
 
           <div class="mt-4">
-            <BreezeLabel for="password" value="Password"/>
+            <BreezeLabel for="password" value="Mot de Passe"/>
             <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
                          autocomplete="new-password"/>
           </div>
 
           <div class="mt-4">
-            <BreezeLabel for="password_confirmation" value="Confirm Password"/>
+            <BreezeLabel for="password_confirmation" value="Confirm Mot de passe"/>
             <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full"
                          v-model="form.password_confirmation" required autocomplete="new-password"/>
           </div>
 
           <div class="flex items-center justify-end mt-4">
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-              Reset Password
+              Réinitialiser le compte
             </BreezeButton>
           </div>
         </form>

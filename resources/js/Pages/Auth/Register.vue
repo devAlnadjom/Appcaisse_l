@@ -1,5 +1,5 @@
 <template>
-    <Head title="Register" />
+    <Head title="Inscription" />
 
     <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
@@ -14,14 +14,14 @@
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
                 <h1 class="mb-4 text-xl font-semibold text-gray-700">
-                    Create account
+                    Creer un compte
                 </h1>
 
                 <BreezeValidationErrors class="mb-4" />
 
                 <form @submit.prevent="submit">
                     <div>
-                        <BreezeLabel for="name" value="Name" />
+                        <BreezeLabel for="name" value="Nom Prénoms" />
                         <BreezeInput
                             id="name"
                             type="text"
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <BreezeLabel for="password" value="Password" />
+                        <BreezeLabel for="password" value="Mot de Passe" />
                         <BreezeInput
                             id="password"
                             type="password"
@@ -60,7 +60,7 @@
                     <div class="mt-4">
                         <BreezeLabel
                             for="password_confirmation"
-                            value="Confirm Password"
+                            value="Confirmer Mot de Passe"
                         />
                         <BreezeInput
                             id="password_confirmation"
@@ -77,7 +77,7 @@
                             :href="route('login')"
                             class="text-sm text-gray-600 underline  hover:text-gray-900"
                         >
-                            Already registered?
+                            J'ai deja un compte?
                         </Link>
 
                         <BreezeButton
@@ -85,7 +85,7 @@
                             :class="{ 'opacity-25': form.processing }"
                             :disabled="form.processing"
                         >
-                            Register
+                            S'inscrire
                         </BreezeButton>
                     </div>
                 </form>
